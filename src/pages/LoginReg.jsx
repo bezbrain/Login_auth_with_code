@@ -25,19 +25,8 @@ const LoginReg = () => {
     auth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    theCodeItself,
-    setTheCodeItself,
-    onSnapshot,
-    colRef,
-    getDoc,
-    doc,
-    db,
-    deleteDoc,
-    countDown,
     snapshotData,
-    setSnapshotData,
     getDbCode,
-    // checkForDataInDb,
   } = useGlobalContext();
 
   const [showLoginReg, setShowLoginReg] = useState(null);
@@ -74,33 +63,21 @@ const LoginReg = () => {
     }
   };
 
-  // const checkForDataInDb = () => {
-  //   onSnapshot(colRef, (snapshot) => {
-  //     const dataArrFromDb = snapshot.docs.map((each) => {
-  //       const docRef = doc(db, "login", each.id);
-  //       // console.log(each);
-  //       // return docRef;
-  //       return each.data();
-  //     });
-  //     console.log(dataArrFromDb);
-  //   });
-  // };
-  // checkForDataInDb();
+  const newSnapshot = snapshotData.map((each) => {
+    return each.number;
+  });
+  // console.log(newSnapshot[0]);
 
   /* ============================== */
   /* ============================== */
   //   Click button to login
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    // checkForDataInDb();
 
-    if (!email || !password || code !== theCodeItself) {
+    if (!email || !password || code !== newSnapshot[0]) {
       console.log("I cannot be empty");
-      console.log(theCodeItself);
     } else {
       try {
-        console.log(theCodeItself);
-        console.log(code);
         const cred = await signInWithEmailAndPassword(auth, email, password);
         console.log(cred.user);
         navigate("/dashboard");

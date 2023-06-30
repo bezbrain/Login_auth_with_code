@@ -5,9 +5,7 @@ const GetCode = () => {
   const {
     countDown,
     setCountDown,
-    setGetCode,
     theCodeItself,
-    setTheCodeItself,
     getCurrentCode,
     countdownValue,
     colRef,
@@ -35,7 +33,6 @@ const GetCode = () => {
 
   useEffect(() => {
     getDbCode(); // Call the function to have access to the db
-    // console.log(snapshotData);
   }, []);
 
   /* ========================================= */
@@ -50,10 +47,8 @@ const GetCode = () => {
   };
 
   useEffect(() => {
-    // console.log(snapshotData);
     if (countDown === 0) {
       deleteWhenCountdownIsZero();
-      console.log("I am zero");
     }
   }, [countDown]);
 
@@ -64,7 +59,6 @@ const GetCode = () => {
       setCountDown((prevCountDown) => {
         if (prevCountDown === 0) {
           clearInterval(timer); // Clear the interval when countdown reaches 0
-          // deleteDoc(db, "login")
           return 0;
         }
         return prevCountDown - 1;
