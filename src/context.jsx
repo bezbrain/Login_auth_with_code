@@ -45,7 +45,7 @@ export const AppProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
 
-  const countdownValue = 20;
+  const countdownValue = 60;
 
   const codeNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const [countDown, setCountDown] = useState(countdownValue);
@@ -79,18 +79,6 @@ export const AppProvider = ({ children }) => {
       // console.log(myCode);
       setSnapshotData(myCode);
     });
-  };
-
-  const checkForDataInDb = () => {
-    // onSnapshot(colRef, (snapshot) => {
-    //   const dataArrFromDb = snapshot.docs.map((each) => {
-    //     const docRef = doc(db, "login", each.id);
-    //     // console.log(each);
-    //     return docRef;
-    //     // return (each.data());
-    //   });
-    //   console.log(dataArrFromDb);
-    // });
   };
 
   return (
@@ -130,7 +118,6 @@ export const AppProvider = ({ children }) => {
         theCodeItself,
         setTheCodeItself,
         getCurrentCode,
-        checkForDataInDb,
         snapshotData,
         setSnapshotData,
         getDbCode,

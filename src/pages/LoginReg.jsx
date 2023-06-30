@@ -27,6 +27,7 @@ const LoginReg = () => {
     signInWithEmailAndPassword,
     snapshotData,
     getDbCode,
+    setCountDown,
   } = useGlobalContext();
 
   const [showLoginReg, setShowLoginReg] = useState(null);
@@ -84,6 +85,7 @@ const LoginReg = () => {
         setEmail("");
         setPassword("");
         setCode("");
+        setCountDown(0);
       } catch (error) {
         console.log(error.message);
       }

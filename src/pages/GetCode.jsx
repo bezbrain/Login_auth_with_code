@@ -25,6 +25,7 @@ const GetCode = () => {
       console.log(codeConcatinated);
       setCountDown(countdownValue);
       secondsCountdown();
+      deleteWhenCountdownIsZero(); //calling delete function to make sure prev code deletes from db
       await addDoc(colRef, { number: codeConcatinated });
     } catch (error) {
       console.log(error);
