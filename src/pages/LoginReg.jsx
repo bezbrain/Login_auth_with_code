@@ -5,13 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useGlobalContext } from "../context";
 
-import { collection, getFirestore } from "firebase/firestore";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-
 /* ================== */
 /* ================== */
 // The Login Component
@@ -29,28 +22,31 @@ const LoginReg = () => {
     setPassword,
     code,
     setCode,
-    firebaseConfig,
-    initializeApp,
-    codeNumbers,
-    countDown,
-    setCountDown,
-    getCode,
-    setGetCode,
+    auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
     theCodeItself,
     setTheCodeItself,
-    getCurrentCode,
-    // concat,
+    onSnapshot,
+    colRef,
+    getDoc,
+    doc,
+    db,
+    deleteDoc,
+    countDown,
+    snapshotData,
+    setSnapshotData,
+    getDbCode,
+    // checkForDataInDb,
   } = useGlobalContext();
 
   const [showLoginReg, setShowLoginReg] = useState(null);
   const navigate = useNavigate();
 
-  initializeApp(firebaseConfig);
-
-  const db = getFirestore();
-  const auth = getAuth();
-
-  const colRef = collection(db, "login");
+  useEffect(() => {
+    getDbCode();
+    console.log(snapshotData);
+  }, []);
 
   /* ============================== */
   /* ============================== */
@@ -78,12 +74,26 @@ const LoginReg = () => {
     }
   };
 
+  // const checkForDataInDb = () => {
+  //   onSnapshot(colRef, (snapshot) => {
+  //     const dataArrFromDb = snapshot.docs.map((each) => {
+  //       const docRef = doc(db, "login", each.id);
+  //       // console.log(each);
+  //       // return docRef;
+  //       return each.data();
+  //     });
+  //     console.log(dataArrFromDb);
+  //   });
+  // };
+  // checkForDataInDb();
+
   /* ============================== */
   /* ============================== */
   //   Click button to login
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    console.log(theCodeItself);
+    // checkForDataInDb();
+
     if (!email || !password || code !== theCodeItself) {
       console.log("I cannot be empty");
       console.log(theCodeItself);

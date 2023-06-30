@@ -198,3 +198,12 @@ input[type="number"] {
 .get-code span {
   color: #606b73;
 }
+
+.gen-code-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}

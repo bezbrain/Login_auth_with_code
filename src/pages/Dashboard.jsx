@@ -2,11 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { useGlobalContext } from "../context";
 
-const Dashboard = ({ handleLogoutProp }) => {
-  const { getAuth, initializeApp, firebaseConfig } = useGlobalContext();
-
-  initializeApp(firebaseConfig);
-  const auth = getAuth();
+const Dashboard = () => {
+  const { auth } = useGlobalContext();
 
   const navigation = useNavigate();
 
@@ -14,7 +11,7 @@ const Dashboard = ({ handleLogoutProp }) => {
   // Logout Function
   const handleLogout = async () => {
     try {
-      await auth.signOut();
+      await signOut(auth);
       console.log("You are logged out");
       navigation("/");
     } catch (error) {

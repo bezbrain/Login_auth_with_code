@@ -10,7 +10,7 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
     setPassword,
     code,
     setCode,
-    handleGetCodeClick,
+    // handleGetCodeClick,
     theCodeItself,
   } = useGlobalContext();
 
@@ -57,7 +57,7 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
           to="/getcode"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleGetCodeClick}
+          // onClick={handleGetCodeClick}
         >
           Get code
         </Link>
