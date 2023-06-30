@@ -19,9 +19,11 @@ import {
 
 const AppContext = React.createContext();
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export const AppProvider = ({ children }) => {
   const firebaseConfig = {
-    apiKey: "AIzaSyAtynMRMVWi4Vit_KoOp-5s3TpBdeyg96w",
+    apiKey: API_KEY,
     authDomain: "makeene-auth.firebaseapp.com",
     projectId: "makeene-auth",
     storageBucket: "makeene-auth.appspot.com",
