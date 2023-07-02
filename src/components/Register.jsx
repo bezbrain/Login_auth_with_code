@@ -10,7 +10,7 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
     regPassword,
     setRegPassword,
     regError,
-    success,
+    regSuccess,
     caughtError,
   } = useGlobalContext();
 
@@ -22,7 +22,7 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
       >
         <h2>Register</h2>
 
-        {success ? (
+        {regSuccess ? (
           // {/* Success Message */}
           <div
             className={`message ${

@@ -55,7 +55,9 @@ export const AppProvider = ({ children }) => {
   const [snapshotData, setSnapshotData] = useState([]);
 
   const [regError, setRegError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [loginError, setLoginError] = useState(false);
+  const [regSuccess, setRegSuccess] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const [caughtError, setCaughtError] = useState("");
 
   const getRandumNumber = () => {
@@ -127,8 +129,12 @@ export const AppProvider = ({ children }) => {
         getDbCode,
         regError,
         setRegError,
-        success,
-        setSuccess,
+        loginError,
+        setLoginError,
+        regSuccess,
+        setRegSuccess,
+        loginSuccess,
+        setLoginSuccess,
         caughtError,
         setCaughtError,
       }}

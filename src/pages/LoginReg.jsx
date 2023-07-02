@@ -28,8 +28,9 @@ const LoginReg = () => {
     getDbCode,
     setCountDown,
     setRegError,
-    success,
-    setSuccess,
+    setLoginError,
+    setRegSuccess,
+    setLoginSuccess,
     setCaughtError,
   } = useGlobalContext();
 
@@ -46,23 +47,21 @@ const LoginReg = () => {
   const handleRegSubmit = async (e) => {
     e.preventDefault();
     if (!regName || !regEmail || !regPassword) {
-      console.log("I cannot be empty");
       setRegError(true);
       setTimeout(() => {
         setRegError(false);
       }, 5000);
-      setSuccess(false);
+      setRegSuccess(false);
       setCaughtError("");
     } else {
       try {
-        const cred = await createUserWithEmailAndPassword(
+        await createUserWithEmailAndPassword(
           auth,
           // regName,
           regEmail,
           regPassword
         );
-        console.log(cred.user);
-        setSuccess(true);
+        setRegSuccess(true);
         setRegError(true);
         setTimeout(() => {
           setRegError(false);
@@ -104,13 +103,12 @@ const LoginReg = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
-      console.log("I cannot be empty");
-      setRegError(true);
+    if (!email || !password || !code) {
+      setLoginError(true);
       setTimeout(() => {
-        setRegError(false);
+        setLoginError(false);
       }, 5000);
-      setSuccess(false);
+      setLoginSuccess(false);
       setCaughtError("");
     } else {
       try {
@@ -120,15 +118,14 @@ const LoginReg = () => {
             setCaughtError("");
           }, 5000);
         } else {
-          const cred = await signInWithEmailAndPassword(auth, email, password);
-          console.log(cred.user);
+          await signInWithEmailAndPassword(auth, email, password);
           setTimeout(() => {
             navigate("/dashboard");
           }, 3000);
-          setSuccess(true);
-          setRegError(true);
+          setLoginSuccess(true);
+          setLoginError(true);
           setTimeout(() => {
-            setRegError(false);
+            setLoginError(false);
           }, 5000);
           setEmail("");
           setPassword("");

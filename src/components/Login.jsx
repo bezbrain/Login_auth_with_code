@@ -11,8 +11,8 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
     setPassword,
     code,
     setCode,
-    success,
-    regError,
+    loginSuccess,
+    loginError,
     caughtError,
   } = useGlobalContext();
 
@@ -24,11 +24,11 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
       >
         <h2>Login</h2>
 
-        {success ? (
+        {loginSuccess ? (
           // {/* Success Message */}
           <div
             className={`message ${
-              regError ? "add-message-css add-success-color" : ""
+              loginError ? "add-message-css add-success-color" : ""
             }`}
           >
             <AuthMesaage message="Login successful" />
@@ -37,7 +37,7 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
           // {/* Error Message */}
           <div
             className={`message ${
-              regError ? "add-message-css add-error-color" : ""
+              loginError ? "add-message-css add-error-color" : ""
             }`}
           >
             <AuthMesaage message="No field should be empty" />
