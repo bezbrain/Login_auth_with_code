@@ -4,10 +4,9 @@ import { useGlobalContext } from "../context";
 import Dashboard from "./Dashboard";
 
 const ProtectedRoute = () => {
-  const { colRef } = useGlobalContext();
+  const { checkIfUserIsLoggedIn } = useGlobalContext();
 
-  console.log(colRef);
-  if (!colRef) {
+  if (checkIfUserIsLoggedIn === "") {
     return <Navigate to="/" />;
   }
   return (

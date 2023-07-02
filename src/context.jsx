@@ -60,6 +60,8 @@ export const AppProvider = ({ children }) => {
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [caughtError, setCaughtError] = useState("");
 
+  const [checkIfUserIsLoggedIn, setCheckIfUserIsLoggedIn] = useState("");
+
   const getRandumNumber = () => {
     return Math.floor(Math.random() * codeNumbers.length);
   };
@@ -137,6 +139,8 @@ export const AppProvider = ({ children }) => {
         setLoginSuccess,
         caughtError,
         setCaughtError,
+        checkIfUserIsLoggedIn,
+        setCheckIfUserIsLoggedIn,
       }}
     >
       {children}

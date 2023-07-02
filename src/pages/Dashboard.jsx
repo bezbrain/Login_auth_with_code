@@ -3,7 +3,8 @@ import { signOut } from "firebase/auth";
 import { useGlobalContext } from "../context";
 
 const Dashboard = () => {
-  const { auth } = useGlobalContext();
+  const { auth, checkIfUserIsLoggedIn, setCheckIfUserIsLoggedIn } =
+    useGlobalContext();
 
   const navigation = useNavigate();
 
@@ -13,6 +14,8 @@ const Dashboard = () => {
     try {
       await signOut(auth);
       console.log("You are logged out");
+      setCheckIfUserIsLoggedIn("");
+      console.log(checkIfUserIsLoggedIn);
       navigation("/");
     } catch (error) {
       console.log(error);

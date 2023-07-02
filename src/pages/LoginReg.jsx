@@ -32,6 +32,8 @@ const LoginReg = () => {
     setRegSuccess,
     setLoginSuccess,
     setCaughtError,
+    checkIfUserIsLoggedIn,
+    setCheckIfUserIsLoggedIn,
   } = useGlobalContext();
 
   const [showLoginReg, setShowLoginReg] = useState(null);
@@ -118,7 +120,9 @@ const LoginReg = () => {
             setCaughtError("");
           }, 5000);
         } else {
-          await signInWithEmailAndPassword(auth, email, password);
+          const cred = await signInWithEmailAndPassword(auth, email, password);
+          setCheckIfUserIsLoggedIn(cred.user);
+          console.log(checkIfUserIsLoggedIn);
           setTimeout(() => {
             navigate("/dashboard");
           }, 3000);
