@@ -45,7 +45,7 @@ export const AppProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [code, setCode] = useState("");
 
-  const countdownValue = 60;
+  const countdownValue = 30;
 
   const codeNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   const [countDown, setCountDown] = useState(countdownValue);

@@ -104,7 +104,7 @@ const LoginReg = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password || code !== newSnapshot[0]) {
+    if (!email || !password) {
       console.log("I cannot be empty");
       setRegError(true);
       setTimeout(() => {
@@ -114,6 +114,9 @@ const LoginReg = () => {
       setCaughtError("");
     } else {
       try {
+        if (code !== newSnapshot[0]) {
+          return setCaughtError("Incorrect code");
+        }
         const cred = await signInWithEmailAndPassword(auth, email, password);
         console.log(cred.user);
         setTimeout(() => {
