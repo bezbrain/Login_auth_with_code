@@ -28,6 +28,9 @@ const LoginReg = () => {
     snapshotData,
     getDbCode,
     setCountDown,
+    setRegError,
+    success,
+    setSuccess,
   } = useGlobalContext();
 
   const [showLoginReg, setShowLoginReg] = useState(null);
@@ -45,6 +48,12 @@ const LoginReg = () => {
     e.preventDefault();
     if (!regName || !regEmail || !regPassword) {
       console.log("I cannot be empty");
+      setRegError(true);
+      setTimeout(() => {
+        setRegError(false);
+      }, 5000);
+      setSuccess(false);
+      console.log(success);
     } else {
       try {
         const cred = await createUserWithEmailAndPassword(
@@ -54,10 +63,17 @@ const LoginReg = () => {
           regPassword
         );
         console.log(cred.user);
+        setSuccess(true);
+        setRegError(true);
+        setTimeout(() => {
+          setRegError(false);
+        }, 5000);
         setRegName("");
         setRegEmail("");
         setRegPassword("");
-        setShowLoginReg(!showLoginReg);
+        setTimeout(() => {
+          setShowLoginReg(!showLoginReg);
+        }, 3000);
       } catch (error) {
         console.log(error.message);
       }

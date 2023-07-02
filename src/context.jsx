@@ -54,6 +54,9 @@ export const AppProvider = ({ children }) => {
 
   const [snapshotData, setSnapshotData] = useState([]);
 
+  const [regError, setRegError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const getRandumNumber = () => {
     return Math.floor(Math.random() * codeNumbers.length);
   };
@@ -121,6 +124,10 @@ export const AppProvider = ({ children }) => {
         snapshotData,
         setSnapshotData,
         getDbCode,
+        regError,
+        setRegError,
+        success,
+        setSuccess,
       }}
     >
       {children}

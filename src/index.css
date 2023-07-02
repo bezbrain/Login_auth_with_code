@@ -28,6 +28,29 @@ form {
   transition: ease 1s all;
 }
 
+.message {
+  text-align: center;
+  visibility: hidden;
+  animation: errorText ease-in-out 0.5s infinite;
+}
+@keyframes errorText {
+  0% {
+    text-shadow: none;
+  }
+  100% {
+    text-shadow: 2px 2px #000;
+  }
+}
+.add-message-css {
+  visibility: visible;
+}
+.add-error-color {
+  color: red;
+}
+.add-success-color {
+  color: green;
+}
+
 form h2 {
   font-size: 2.5rem;
   color: #000;
@@ -36,7 +59,7 @@ form h2 {
 .email,
 .password,
 .code,
-.reg-name,
+/* .reg-name, */
 .reg-email,
 .reg-password {
   margin-top: 20px;

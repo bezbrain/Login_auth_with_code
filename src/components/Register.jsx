@@ -1,4 +1,5 @@
 import { useGlobalContext } from "../context";
+import AuthMesaage from "./AuthMesaage";
 
 const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
   const {
@@ -8,6 +9,8 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
     setRegEmail,
     regPassword,
     setRegPassword,
+    regError,
+    success,
   } = useGlobalContext();
 
   return (
@@ -17,6 +20,27 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
         onSubmit={handleRegSubmitProp}
       >
         <h2>Register</h2>
+        {/* Error Message */}
+        {!success && (
+          <div
+            className={`message ${
+              regError ? "add-message-css add-error-color" : ""
+            }`}
+          >
+            <AuthMesaage message="No field should be empty" />
+          </div>
+        )}
+        {/* Success Message */}
+        {success && (
+          <div
+            className={`message ${
+              regError ? "add-message-css add-success-color" : ""
+            }`}
+          >
+            <AuthMesaage message="Registration successfully" />
+          </div>
+        )}
+        {/* Input Section */}
         <div className="reg-name">
           <label htmlFor="">Name</label>
           <br />
