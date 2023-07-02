@@ -99,7 +99,7 @@ const LoginReg = () => {
   });
   // console.log(newSnapshot[0]);
 
-  /* ============================== */
+  /* ======================= */
   //   Click button to login
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -115,22 +115,26 @@ const LoginReg = () => {
     } else {
       try {
         if (code !== newSnapshot[0]) {
-          return setCaughtError("Incorrect code");
+          setCaughtError("Incorrect code");
+          setTimeout(() => {
+            setCaughtError("");
+          }, 5000);
+        } else {
+          const cred = await signInWithEmailAndPassword(auth, email, password);
+          console.log(cred.user);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 3000);
+          setSuccess(true);
+          setRegError(true);
+          setTimeout(() => {
+            setRegError(false);
+          }, 5000);
+          setEmail("");
+          setPassword("");
+          setCode("");
+          setCountDown(0);
         }
-        const cred = await signInWithEmailAndPassword(auth, email, password);
-        console.log(cred.user);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 3000);
-        setSuccess(true);
-        setRegError(true);
-        setTimeout(() => {
-          setRegError(false);
-        }, 5000);
-        setEmail("");
-        setPassword("");
-        setCode("");
-        setCountDown(0);
       } catch (error) {
         console.log(error.message);
         setCaughtError(extratingErrorMsg(error.message));
