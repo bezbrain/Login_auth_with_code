@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
 /* ================== */
-/* ================== */
 // The Login Component
 const LoginReg = () => {
   const {
@@ -31,6 +30,7 @@ const LoginReg = () => {
     setRegError,
     success,
     setSuccess,
+    setCaughtError,
   } = useGlobalContext();
 
   const [showLoginReg, setShowLoginReg] = useState(null);
@@ -42,7 +42,6 @@ const LoginReg = () => {
   }, []);
 
   /* ============================== */
-  /* ============================== */
   //   Click button to register
   const handleRegSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +52,7 @@ const LoginReg = () => {
         setRegError(false);
       }, 5000);
       setSuccess(false);
-      console.log(success);
+      setCaughtError("");
     } else {
       try {
         const cred = await createUserWithEmailAndPassword(
@@ -71,13 +70,28 @@ const LoginReg = () => {
         setRegName("");
         setRegEmail("");
         setRegPassword("");
+        setCaughtError("");
         setTimeout(() => {
           setShowLoginReg(!showLoginReg);
         }, 3000);
       } catch (error) {
-        console.log(error.message);
+        // console.log(error.message);
+        setCaughtError(extratingErrorMsg(error.message));
+        setTimeout(() => {
+          setCaughtError("");
+        }, 5000);
       }
     }
+  };
+  /* Function to extract error message from the firebase returned message */
+  const extratingErrorMsg = (error) => {
+    const startIndex = error.indexOf("/") + 1;
+    const endIndex = error.indexOf(")");
+    const errorCode = error.substring(startIndex, endIndex);
+    // Capitalize the error message
+    const capitalizedError =
+      errorCode.charAt(0).toUpperCase() + errorCode.slice(1).toLowerCase();
+    return capitalizedError;
   };
 
   const newSnapshot = snapshotData.map((each) => {
@@ -86,24 +100,40 @@ const LoginReg = () => {
   // console.log(newSnapshot[0]);
 
   /* ============================== */
-  /* ============================== */
   //   Click button to login
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password || code !== newSnapshot[0]) {
       console.log("I cannot be empty");
+      setRegError(true);
+      setTimeout(() => {
+        setRegError(false);
+      }, 5000);
+      setSuccess(false);
+      setCaughtError("");
     } else {
       try {
         const cred = await signInWithEmailAndPassword(auth, email, password);
         console.log(cred.user);
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
+        setSuccess(true);
+        setRegError(true);
+        setTimeout(() => {
+          setRegError(false);
+        }, 5000);
         setEmail("");
         setPassword("");
         setCode("");
         setCountDown(0);
       } catch (error) {
         console.log(error.message);
+        setCaughtError(extratingErrorMsg(error.message));
+        setTimeout(() => {
+          setCaughtError("");
+        }, 5000);
       }
     }
   };

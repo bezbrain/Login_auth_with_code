@@ -11,6 +11,7 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
     setRegPassword,
     regError,
     success,
+    caughtError,
   } = useGlobalContext();
 
   return (
@@ -20,8 +21,18 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
         onSubmit={handleRegSubmitProp}
       >
         <h2>Register</h2>
-        {/* Error Message */}
-        {!success && (
+
+        {success ? (
+          // {/* Success Message */}
+          <div
+            className={`message ${
+              regError ? "add-message-css add-success-color" : ""
+            }`}
+          >
+            <AuthMesaage message="Registration successful" />
+          </div>
+        ) : (
+          // {/* Error Message */}
           <div
             className={`message ${
               regError ? "add-message-css add-error-color" : ""
@@ -30,16 +41,12 @@ const Register = ({ Login, clickToLogin, handleRegSubmitProp }) => {
             <AuthMesaage message="No field should be empty" />
           </div>
         )}
-        {/* Success Message */}
-        {success && (
-          <div
-            className={`message ${
-              regError ? "add-message-css add-success-color" : ""
-            }`}
-          >
-            <AuthMesaage message="Registration successfully" />
+        {caughtError && (
+          <div className="firebase-message">
+            <AuthMesaage message={caughtError} />
           </div>
         )}
+
         {/* Input Section */}
         <div className="reg-name">
           <label htmlFor="">Name</label>

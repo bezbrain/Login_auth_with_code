@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { useEffect } from "react";
+import AuthMesaage from "./AuthMesaage";
 
 const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
   const {
@@ -10,8 +11,9 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
     setPassword,
     code,
     setCode,
-    // handleGetCodeClick,
-    theCodeItself,
+    success,
+    regError,
+    caughtError,
   } = useGlobalContext();
 
   return (
@@ -21,6 +23,32 @@ const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {
         onSubmit={handleLoginSubmitProp}
       >
         <h2>Login</h2>
+
+        {success ? (
+          // {/* Success Message */}
+          <div
+            className={`message ${
+              regError ? "add-message-css add-success-color" : ""
+            }`}
+          >
+            <AuthMesaage message="Login successful" />
+          </div>
+        ) : (
+          // {/* Error Message */}
+          <div
+            className={`message ${
+              regError ? "add-message-css add-error-color" : ""
+            }`}
+          >
+            <AuthMesaage message="No field should be empty" />
+          </div>
+        )}
+        {caughtError && (
+          <div className="firebase-message">
+            <AuthMesaage message={caughtError} />
+          </div>
+        )}
+
         <div className="email">
           <label htmlFor="">Email</label>
           <br />

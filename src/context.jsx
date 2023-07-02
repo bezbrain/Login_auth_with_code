@@ -56,6 +56,7 @@ export const AppProvider = ({ children }) => {
 
   const [regError, setRegError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [caughtError, setCaughtError] = useState("");
 
   const getRandumNumber = () => {
     return Math.floor(Math.random() * codeNumbers.length);
@@ -128,6 +129,8 @@ export const AppProvider = ({ children }) => {
         setRegError,
         success,
         setSuccess,
+        caughtError,
+        setCaughtError,
       }}
     >
       {children}

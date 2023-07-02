@@ -28,10 +28,16 @@ form {
   transition: ease 1s all;
 }
 
-.message {
+.message,
+.firebase-message {
   text-align: center;
-  visibility: hidden;
   animation: errorText ease-in-out 0.5s infinite;
+}
+.message {
+  visibility: hidden;
+}
+.firebase-message {
+  color: red;
 }
 @keyframes errorText {
   0% {
