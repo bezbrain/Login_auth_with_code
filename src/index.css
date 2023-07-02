@@ -17,6 +17,7 @@ body {
   color: #f9fafc;
   font-size: 20px;
   font-family: gilroy-bold;
+  overflow-y: hidden;
 }
 
 form {
