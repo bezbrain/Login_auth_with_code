@@ -27,6 +27,11 @@ form {
   box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.3);
   transition: ease 1s all;
 }
+@media screen and (max-width: 500px) {
+  form {
+    width: 300px;
+  }
+}
 
 .message,
 .firebase-message {
@@ -143,6 +148,7 @@ input[type="number"] {
   display: flex;
   font-size: 16px;
   justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
   padding-inline: 10px;
 }
@@ -156,6 +162,17 @@ input[type="number"] {
 }
 .have-acc p:last-child:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 500px) {
+  .dont-have-acc,
+  .have-acc {
+    font-size: 13px;
+  }
+  .dont-have-acc p:last-child,
+  .have-acc p:last-child {
+    font-size: 16px;
+  }
 }
 
 .dont-have-acc p:last-child:hover {
