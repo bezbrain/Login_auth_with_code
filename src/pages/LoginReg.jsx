@@ -41,7 +41,6 @@ const LoginReg = () => {
 
   useEffect(() => {
     getDbCode();
-    console.log(snapshotData);
   }, []);
 
   /* ============================== */
@@ -57,12 +56,7 @@ const LoginReg = () => {
       setCaughtError("");
     } else {
       try {
-        await createUserWithEmailAndPassword(
-          auth,
-          // regName,
-          regEmail,
-          regPassword
-        );
+        await createUserWithEmailAndPassword(auth, regEmail, regPassword);
         setRegSuccess(true);
         setRegError(true);
         setTimeout(() => {
@@ -76,7 +70,6 @@ const LoginReg = () => {
           setShowLoginReg(!showLoginReg);
         }, 3000);
       } catch (error) {
-        // console.log(error.message);
         setCaughtError(extratingErrorMsg(error.message));
         setTimeout(() => {
           setCaughtError("");
@@ -84,6 +77,7 @@ const LoginReg = () => {
       }
     }
   };
+
   /* Function to extract error message from the firebase returned message */
   const extratingErrorMsg = (error) => {
     const startIndex = error.indexOf("/") + 1;
@@ -98,7 +92,6 @@ const LoginReg = () => {
   const newSnapshot = snapshotData.map((each) => {
     return each.number;
   });
-  // console.log(newSnapshot[0]);
 
   /* ======================= */
   //   Click button to login
@@ -122,7 +115,7 @@ const LoginReg = () => {
         } else {
           const cred = await signInWithEmailAndPassword(auth, email, password);
           setCheckIfUserIsLoggedIn(cred.user);
-          console.log(checkIfUserIsLoggedIn);
+
           setTimeout(() => {
             navigate("/dashboard");
           }, 3000);
@@ -137,7 +130,6 @@ const LoginReg = () => {
           setCountDown(0);
         }
       } catch (error) {
-        console.log(error.message);
         setCaughtError(extratingErrorMsg(error.message));
         setTimeout(() => {
           setCaughtError("");

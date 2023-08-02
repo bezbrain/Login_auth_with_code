@@ -22,13 +22,12 @@ const GetCode = () => {
   const handleGenerateCode = async () => {
     try {
       const codeConcatinated = await getCurrentCode();
-      console.log(codeConcatinated);
       setCountDown(countdownValue);
       secondsCountdown();
       deleteWhenCountdownIsZero(); //calling delete function to make sure prev code deletes from db
       await addDoc(colRef, { number: codeConcatinated });
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   };
 
@@ -39,9 +38,7 @@ const GetCode = () => {
   /* ========================================= */
   // Delete code from db when countdown reaches 0
   const deleteWhenCountdownIsZero = async () => {
-    // console.log(snapshotData);
     snapshotData.forEach((each) => {
-      console.log(each.id);
       const docRef = doc(db, "login", each.id);
       deleteDoc(docRef);
     });

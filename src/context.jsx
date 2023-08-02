@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { initializeApp } from "firebase/app";
 
 import {
@@ -71,7 +71,6 @@ export const AppProvider = ({ children }) => {
     for (let i = 0; i < 6; i++) {
       concat += getCode[getRandumNumber()];
     }
-    console.log(concat);
     setTheCodeItself(concat);
     return concat;
   };
@@ -84,7 +83,6 @@ export const AppProvider = ({ children }) => {
           id: each.id,
         };
       });
-      // console.log(myCode);
       setSnapshotData(myCode);
     });
   };

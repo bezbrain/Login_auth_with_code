@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
-import { useEffect } from "react";
 import AuthMesaage from "./AuthMesaage";
 
 const Login = ({ Register, clickToReg, handleLoginSubmitProp }) => {

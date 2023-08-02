@@ -6,7 +6,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* overflow-y: hidden; */
 }
 
 body {
@@ -71,7 +70,6 @@ form h2 {
 .email,
 .password,
 .code,
-/* .reg-name, */
 .reg-email,
 .reg-password {
   margin-top: 20px;
@@ -159,7 +157,6 @@ input[type="number"] {
   color: #606b73;
   cursor: pointer;
   font-size: 18px;
-  /* border: 2px solid red; */
 }
 .have-acc p:last-child:hover {
   text-decoration: underline;
