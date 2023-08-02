@@ -27,4 +27,4 @@ Introduction: Makeene Auth is a web application that assures a stronger authenti
 
 This availability of the code for some seconds before it expires is to allow for stronger authentication and protect users' account.
 
-You can click [here]("https://makeene-auth.netlify.app/") to visit the complete work and check out this functionality.
+You can click [here](https://makeene-auth.netlify.app/) to visit the complete work and check out this functionality.
