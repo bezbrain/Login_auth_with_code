@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import Dashboard from "./Dashboard";
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({children}) => {
   const { checkIfUserIsLoggedIn } = useGlobalContext();
 
   if (checkIfUserIsLoggedIn === "") {
@@ -10,7 +10,7 @@ const ProtectedRoute = () => {
   }
   return (
     <>
-      <Dashboard />
+      {children}
     </>
   );
 };
