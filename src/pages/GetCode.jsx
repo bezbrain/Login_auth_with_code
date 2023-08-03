@@ -15,6 +15,7 @@ const GetCode = () => {
     doc,
     snapshotData,
     getDbCode,
+    checkIfUserIsLoggedIn,
   } = useGlobalContext();
 
   /*============================================================ */
@@ -45,17 +46,17 @@ const GetCode = () => {
   };
 
   useEffect(() => {
-    if (countDown === 0) {
+    if (countDown === 0 || checkIfUserIsLoggedIn) {
       deleteWhenCountdownIsZero();
     }
-  }, [countDown]);
+  }, [countDown, checkIfUserIsLoggedIn]);
 
   /* ===================== */
   // countdown functionality
   const secondsCountdown = () => {
     const timer = setInterval(() => {
       setCountDown((prevCountDown) => {
-        if (prevCountDown === 0) {
+        if (prevCountDown === 0 || checkIfUserIsLoggedIn) {
           clearInterval(timer); // Clear the interval when countdown reaches 0
           return 0;
         }
